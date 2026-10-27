@@ -26,7 +26,7 @@ from psycopg2.extras import RealDictCursor
 
 # Allow `python ml/train_model.py` and `from ml.train_model import ...` alike
 sys.path.append(str(Path(__file__).parent.parent))
-from ml.registry import ModelRegistry, STAGE_STAGING, STAGE_PRODUCTION
+from ml.registry import ModelRegistry, STAGE_STAGING, STAGE_PRODUCTION, STAGE_CHALLENGER
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -489,7 +489,7 @@ def main():
     parser.add_argument(
         "--stage",
         default=STAGE_STAGING,
-        choices=[STAGE_STAGING, STAGE_PRODUCTION],
+        choices=[STAGE_STAGING, STAGE_CHALLENGER, STAGE_PRODUCTION],
         help="Registry stage to register the trained model under",
     )
     parser.add_argument("--no-register", action="store_true", help="Skip registry registration")
